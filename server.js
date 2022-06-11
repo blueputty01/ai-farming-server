@@ -73,36 +73,36 @@ function getPrediction(id, callback){
     });
 }
 
-// async function getDbStuff(){
-//     const bob = null;
-//     // Reads rows from the Albums table
-// const albumsTable = await database.table('Albums');
+async function getDbStuff(){
+    const bob = null;
+    // Reads rows from the Albums table
+const albumsTable = await database.table('Albums');
 
-// const query = {
-//   columns: ['farmId', 'farmName', 'imgBase64', 'itemPrice', 'productDescription'],
-//   keySet: {
-//     all: true,
-//   },
-// };
+const query = {
+  columns: ['farmId', 'farmName', 'imgBase64', 'itemPrice', 'productDescription'],
+  keySet: {
+    all: true,
+  },
+};
 
-// try {
-//   const [rows] =  albumsTable.read(query);
+try {
+  const [rows] =  albumsTable.read(query);
 
-//   rows.forEach(row => {
-//    const bob = row.toJSON();
-//     console.log(
-//       `farmId: ${json.farmId}, farmName: ${json.farmName}, imgBase64: ${json.imgBase64}, itemPrice: ${json.itemPrice}, productDescription: ${json.productDescription}`
-//     );
-//     return bob;
-//   });
-// } catch (err) {
-//   console.error('ERROR:', err);
-// } finally {
-//   // Close the database when finished.
-//   await database.close();
-// }
-// return bob;
-// }
+  rows.forEach(row => {
+   const bob = row.toJSON();
+    console.log(
+      `farmId: ${json.farmId}, farmName: ${json.farmName}, imgBase64: ${json.imgBase64}, itemPrice: ${json.itemPrice}, productDescription: ${json.productDescription}`
+    );
+    return bob;
+  });
+} catch (err) {
+  console.error('ERROR:', err);
+} finally {
+  // Close the database when finished.
+  await database.close();
+}
+return bob;
+}
 
 app.post('/getPrediction', function(req, res){
     if(!req.body.base64Image){
@@ -123,25 +123,25 @@ app.post('/getPrediction', function(req, res){
                 return;
             }
             getPrediction(requestNumber, function(contents){
-                database.runTransaction(async (err, transaction) => {
-                    if (err) {
-                      console.error(err);
-                      return;
-                    }
-                    try {
-                      const [rowCount] = await transaction.runUpdate({
-                        sql: `INSERT itemInfo (farmId, farmName, imgBase64, itemPrice, productDescription) VALUES
-                        (6097217190, 'Joe'sFarm', 6097217191, 19.99, ` + contents +  `)`,
-                      });
-                      console.log(`${rowCount} records inserted.`);
-                      await transaction.commit();
-                    } catch (err) {
-                      console.error('ERROR:', err);
-                    } finally {
-                      // Close the database when finished.
-                      database.close();
-                    }
-                  });
+                // database.runTransaction(async (err, transaction) => {
+                //     if (err) {
+                //       console.error(err);
+                //       return;
+                //     }
+                //     try {
+                //       const [rowCount] = await transaction.runUpdate({
+                //         sql: `INSERT itemInfo (farmId, farmName, imgBase64, itemPrice, productDescription) VALUES
+                //         (6097217190, 'Joe'sFarm', 6097217191, 19.99, ` + contents +  `)`,
+                //       });
+                //       console.log(`${rowCount} records inserted.`);
+                //       await transaction.commit();
+                //     } catch (err) {
+                //       console.error('ERROR:', err);
+                //     } finally {
+                //       // Close the database when finished.
+                //       database.close();
+                //     }
+                //   });
                   
                 res.json({'prediction': contents});
                 
@@ -154,7 +154,7 @@ app.post('/getPrediction', function(req, res){
 app.get('/getData', function(req, res) {
     
 
-    res.json({ "itemInfo": ["itemName", "imgURL", "healthDiagnosis", "productDescription"] })
+    res.json(getDbStuff)
 });
 
 app.listen(5000, () => {console.log("Server started on port 5000")})
