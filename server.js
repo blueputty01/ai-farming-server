@@ -51,7 +51,9 @@ const app = express();
 //Routes
 
 // app.use('/', express.static(__dirname + '/public')); // static public folder
+var requestCount = 0;
 
+app.use('/', express.static(__dirname + '/public')); // static public folder
 
 function isSupported(id, callback){
     detect.fromFile('upload/'+id, function(err, result) {
@@ -142,7 +144,6 @@ app.post('/getPrediction', function(req, res){
                 //       database.close();
                 //     }
                 //   });
-                  
                 res.json({'prediction': contents});
                 
             });
