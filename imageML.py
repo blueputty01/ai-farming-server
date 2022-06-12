@@ -22,7 +22,7 @@ if type == 'fruit':
 else:
     model_file = 'fruit.h5'
 
-model = load_module(model_file)
+model = load_model(model_file)
 
 
 model.compile(optimizer='adam', loss='binary_crossentropy',
