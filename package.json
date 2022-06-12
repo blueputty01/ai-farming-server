@@ -1,5 +1,5 @@
 {
-  "name": "monty-server",
+  "name": "ai-farming-client",
   "version": "1.0.0",
   "description": "",
   "main": "server.ts",
@@ -7,17 +7,9 @@
     "start": "node src/server.ts",
     "dev": "nodemon src/server.ts"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/blueputty01/monty-server.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/blueputty01/monty-server/issues"
-  },
-  "homepage": "https://github.com/blueputty01/monty-server#readme",
   "dependencies": {
     "@google-cloud/spanner": "^5.18.0",
     "child_process": "^1.0.2",
