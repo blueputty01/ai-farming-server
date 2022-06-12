@@ -6,7 +6,7 @@ import tensorflow as tf
 
 model_dir = '../models/'
 
-fileLocation = sys.argv[1]
+fileLocation = sys.argv[2]
 
 # disable stderr
 stderr = sys.stderr
@@ -32,8 +32,9 @@ model.compile(optimizer='adam', loss='binary_crossentropy',
 
 
 def predict(path):
+    print('predicting...')
     test_image = image.load_img(path,
-                                target_size=(64, 64))
+                                target_size=(256, 256))
     test_image = np.expand_dims(test_image, axis=0)
     result = np.argmax(model.predict(test_image))
     return result

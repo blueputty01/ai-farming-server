@@ -35,17 +35,17 @@ app.post(
 function getPrediction(type: string, req: Request, res: Response) {
   const file = (req as MulterRequest).file;
 
-  console.log("...predicting");
-
   const successCallback = (contents: string) => {
     res.send(contents);
   };
 
-  console.log(__filename);
+  const command = `python ${pythonClassifierPath} ${type} ${file.path}`;
+
+  console.log(command, __dirname);
 
   exec(
-    `python ${pythonClassifierPath} ${type} ${file.path}`,
-    ["cwd"],
+    command,
+    { cwd: __dirname },
     function (error: string, stdout: string, stderr: string) {
       if (error || stderr) {
         console.log("Python error: " + error);
