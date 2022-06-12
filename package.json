@@ -2,11 +2,10 @@
   "name": "monty-server",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
-    "dev": "nodemon server"
+    "start": "node src/server.ts",
+    "dev": "nodemon src/server.ts"
   },
   "repository": {
     "type": "git",
@@ -33,6 +32,10 @@
     "shelljs": "^0.8.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.42",
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
   }
 }
