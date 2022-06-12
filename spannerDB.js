@@ -1,12 +1,12 @@
 // Imports the Google Cloud client library
-const {Spanner} = require('@google-cloud/spanner');
+const { Spanner } = require("@google-cloud/spanner");
 
 /**
  * TODO(developer): Uncomment the following lines before running the sample.
  */
- const projectId = 'empowerbot-nywy';
- const instanceId = 'my-instance';
- const databaseId = 'monty-hacks';
+const projectId = "empowerbot-nywy";
+const instanceId = "my-instance";
+const databaseId = "monty-hacks";
 
 // Creates a client
 const spanner = new Spanner({
@@ -31,10 +31,9 @@ database.runTransaction(async (err, transaction) => {
     console.log(`${rowCount} records inserted.`);
     await transaction.commit();
   } catch (err) {
-    console.error('ERROR:', err);
+    console.error("ERROR:", err);
   } finally {
     // Close the database when finished.
     database.close();
   }
 });
-
