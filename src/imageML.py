@@ -4,6 +4,8 @@ import sys
 import numpy as np
 import tensorflow as tf
 
+model_dir = '../models/'
+
 fileLocation = sys.argv[1]
 
 # disable stderr
@@ -22,7 +24,7 @@ if type == 'fruit':
 else:
     model_file = 'fruit.h5'
 
-model = load_model(model_file)
+model = load_model(f"{model_dir}{model_file}")
 
 
 model.compile(optimizer='adam', loss='binary_crossentropy',

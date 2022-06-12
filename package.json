@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "start": "node server.ts",
-    "dev": "nodemon server.ts"
+    "start": "node src/server.ts",
+    "dev": "nodemon src/server.ts"
   },
   "repository": {
     "type": "git",

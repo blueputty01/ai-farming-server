@@ -7,18 +7,14 @@ interface MulterRequest extends Request {
   file: any;
 }
 
+const pythonClassifierPath = "imageML.py";
+
+const { exec } = require("child_process");
 const upload = multer({ dest: os.tmpdir() });
 
 const app = express();
-
 app.use(express.json());
 app.use(cors());
-
-app.use("/", express.static(__dirname + "/public")); // static public folder
-
-const { exec } = require("child_process");
-
-const pythonClassifierPath = "./imageML.py";
 
 app.post(
   "/api/classify",
@@ -39,12 +35,17 @@ app.post(
 function getPrediction(type: string, req: Request, res: Response) {
   const file = (req as MulterRequest).file;
 
+  console.log("...predicting");
+
   const successCallback = (contents: string) => {
     res.send(contents);
   };
 
+  console.log(__filename);
+
   exec(
     `python ${pythonClassifierPath} ${type} ${file.path}`,
+    ["cwd"],
     function (error: string, stdout: string, stderr: string) {
       if (error || stderr) {
         console.log("Python error: " + error);
