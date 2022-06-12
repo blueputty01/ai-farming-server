@@ -21,10 +21,18 @@ const { exec } = require("child_process");
 const pythonClassifierPath = "./imageML.py";
 
 app.post(
-  "/getPrediction",
+  "/api/classify",
   upload.single("file"),
   function (req: Request, res: Response) {
     getPrediction("fruit", req, res);
+  }
+);
+
+app.post(
+  "/api/leaves",
+  upload.single("file"),
+  function (req: Request, res: Response) {
+    getPrediction("leaves", req, res);
   }
 );
 
