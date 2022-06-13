@@ -11,7 +11,7 @@ Exposes API to interact with machine learning model.
 
 ## 📑 Documentation
 
-Server starts on localhost port 5000. POST request using URLs below:
+Server starts on localhost port 5000. POST request using URLs below. Key for file in request body must be `file`.
 
 ### 🍇 Fruit/Vegetable Classification
 
