@@ -1,9 +1,9 @@
-from tensorflow.keras.models import load_model
 import tensorflow as tf
 import numpy as np
 import sys
+from tensorflow.keras.models import load_model
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Disable log except errors
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 
 model_dir = '../models/'
@@ -11,8 +11,7 @@ model_dir = '../models/'
 fileLocation = sys.argv[2]
 type = sys.argv[1]
 
-# disable stderr
-stderr = sys.stderr
+stderr = sys.stderr  # disable stderr
 sys.stderr = open(os.devnull, 'w')
 image = tf.keras.preprocessing.image
 sys.stderr = stderr  # re-enable stderr
@@ -39,13 +38,13 @@ model.compile(optimizer='adam', loss='binary_crossentropy',
 
 
 def predict(path):
-    print('test_image')
     test_image = image.load_img(path,
                                 target_size=target_size)
     test_image = np.expand_dims(test_image, axis=0)
-    print('get_result')
-    result = np.argmax(model.predict(test_image))
-    print('returning')
+    predict = model.predict(test_image, verbose=0)
+    # verbose=0 disables progress bar
+    # https://keras.io/api/models/model_training_apis/
+    result = np.argmax(predict)
     return result
 
 
