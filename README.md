@@ -25,3 +25,7 @@ http://localhost:5000/api/leaves
 
 - Python, Tensorflow
 - TypeScript, Express
+
+## Other
+
+Check out the [client](https://github.com/blueputty01/ai-farming-client)!
