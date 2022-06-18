@@ -21,6 +21,9 @@ http://localhost:5000/api/classify
 
 http://localhost:5000/api/leaves
 
+### Dependencies 
+Fruit/vegetable and leaves model should be located in `./model` directory at root level.
+
 ## ⚙️ Technologies Used
 
 - Python, Tensorflow
