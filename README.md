@@ -7,7 +7,7 @@
 
 ## ❓ General
 
-Exposes API to interact with machine learning model.
+Exposes API to interact with machine learning model. Model is able to classify fruits/vegetables along with plant diseases based on pictures of their leaves.
 
 ## 📑 Documentation
 
